@@ -1,0 +1,108 @@
+/* Estilos para el contenedor */
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  align-items: flex-start; /* Alinea los elementos en la parte superior del contenedor */
+  height: 100vh;
+  background-color: var(--primary-color); /* Fondo de color primario */
+}
+
+/* Estilos para el formulario */
+form {
+  background-color: var(--secondary-color);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 400px; /* Ancho máximo del formulario */
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s;
+  font-family: Arial, sans-serif; /* Fuente Arial */
+  margin-top: 20px; /* Ajusta el margen superior para dejar espacio entre la barra de navegación y el formulario */
+  margin-bottom: 20px; /* Añade margen inferior para evitar que el contenido se pegue al fondo */
+
+  /* Ajusta la posición fija solo en la parte superior */
+  position: sticky;
+  top: 0;
+}
+
+/* Estilos para los títulos del formulario */
+h2 {
+  font-size: 24px;
+  color: var(--accent-color); /* Color de acento */
+  margin: 0 0 20px; /* Espacio inferior */
+}
+
+.titulo,h1{
+  font-size: 24px;
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
+}
+
+/* Estilos para las etiquetas y campos de entrada del formulario */
+label {
+  font-size: 18px;
+  font-weight: bold;
+  color: white; /* Color de texto en blanco */
+  margin: 10px 0;
+  width: 100%; /* Ajusta el ancho al 100% */
+  text-align: left; /* Alineación izquierda */
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--accent-color); /* Borde en color de acento */
+  border-radius: 10px;
+  font-size: 16px;
+  margin: 10px 0;
+  color: black; /* Color de texto en negro */
+  background-color: white; /* Fondo blanco */
+  text-align: left; /* Alineación izquierda */
+}
+
+input[type="submit"] {
+  width: 70%;
+  background-color: var(--accent-color);
+  color: white;
+  text-align: center;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
+
+/* Estilos al hacer hover en el botón */
+input[type="submit"]:hover {
+  background-color: var(--primary-color); /* Color principal al hacer hover */
+}
+
+/* Estilos para los select */
+select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--accent-color); /* Borde en color de acento */
+  border-radius: 10px;
+  font-size: 16px;
+  margin: 10px 0;
+  color: black; /* Color de texto en negro */
+  background-color: white; /* Fondo blanco */
+  text-align: left; /* Alineación izquierda */
+  -webkit-appearance: none; /* Elimina la apariencia predeterminada del sistema (flecha en el cuadro desplegable) */
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z' /></svg>"); /* Agrega una pequeña flecha personalizada */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+/* Estilos adicionales al hacer hover en el select */
+select:hover {
+  border-color: var(--primary-color); /* Cambia el color del borde al hacer hover */
+}

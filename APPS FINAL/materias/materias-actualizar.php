@@ -7,13 +7,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["editar_materia"])) {
     $idMateria = mysqli_real_escape_string($conexion, $_POST["idMateria"]);
     $nombreMateria = mysqli_real_escape_string($conexion, $_POST["nombreMateria"]);
     $horasTotales = mysqli_real_escape_string($conexion, $_POST["horas_totales"]);
+    $horasImpartidas = mysqli_real_escape_string($conexion, $_POST["horas_impartidas"]);
     $idGrupo = mysqli_real_escape_string($conexion, $_POST["grupo"]);
 
-    // Actualizar las horas totales y restantes al mismo valor
+    // Query para actualizar los datos en la tabla materias
     $updateQuery = "UPDATE materia 
                     SET Nombre_materia = '$nombreMateria', 
                         Horas_totales = '$horasTotales', 
-                        Horas_restantes = '$horasTotales', 
+                        Horas_impartidas = '$horasImpartidas', 
                         ID_Grupopedagogico = '$idGrupo' 
                     WHERE ID_Materia = '$idMateria'";
 
@@ -30,5 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["editar_materia"])) {
     // Manejar el caso en el que el formulario no se ha enviado correctamente
     echo "Error: El formulario no se ha enviado correctamente.";
 }
+
+// Redireccionar a la página de materias después de la actualización
 header("Location: materias-data.php");
 ?>

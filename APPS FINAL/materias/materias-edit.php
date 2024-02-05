@@ -4,22 +4,22 @@ include("../conector.php");
 // Verificar si se ha enviado el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["editar_materia"])) {
     // Obtener los datos del formulario
-    $idMateria = mysqli_real_escape_string($conexion, $_POST["idMateria"]);
-    $nombreMateria = mysqli_real_escape_string($conexion, $_POST["nombreMateria"]);
-    $horasTotales = mysqli_real_escape_string($conexion, $_POST["horas_totales"]);
-    $idGrupoPedagogico = mysqli_real_escape_string($conexion, $_POST["grupo"]);
+$idMateria = mysqli_real_escape_string($conexion, $_POST["idMateria"]);
+$nombreMateria = mysqli_real_escape_string($conexion, $_POST["nombreMateria"]);
+$horasTotales = mysqli_real_escape_string($conexion, $_POST["horas_totales"]);
+$horasImpartidas = mysqli_real_escape_string($conexion, $_POST["horas_impartidas"]);  // Nueva línea
+$idGrupoPedagogico = mysqli_real_escape_string($conexion, $_POST["grupo"]);
 
-    // Calcular las horas restantes
-    $horasUtilizadas = $mostrar['Horas_totales'] - $mostrar['Horas_restantes'];
-    $horasRestantes = $horasTotales - $horasUtilizadas;
+// Calcular las horas restantes
+$horasRestantes = $horasTotales - $horasImpartidas;
 
-    // Query para actualizar los datos en la tabla materias
-    $updateQuery = "UPDATE materia 
-                    SET Nombre_materia = '$nombreMateria', 
-                        horas_totales = '$horasTotales',
-                        Horas_restantes = '$horasRestantes', 
-                        grupo = '$idGrupoPedagogico' 
-                    WHERE ID_Materia = '$idMateria'";
+// Query para actualizar los datos en la tabla materias
+$updateQuery = "UPDATE materia 
+                SET Nombre_materia = '$nombreMateria', 
+                    horas_totales = '$horasTotales',
+                    Horas_impartidas = '$horasImpartidas',  -- Modificado
+                    grupo = '$idGrupoPedagogico' 
+                WHERE ID_Materia = '$idMateria'";
 
     // Ejecutar la consulta de actualización
     if (mysqli_query($conexion, $updateQuery)) {
@@ -84,21 +84,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["editar_materia"])) {
     <div>
         <form method="post" action = "materias-actualizar.php"  >
             <table class="tablita lineasVerticales">
-                <tr id="headerTabla">
-                
-                    <td><b>Nombre de la Materia</b></td>
-                    <td><b>Horas</b></td>
-                    
-            
-                    <td><b>Grupo Pedagógico</b></td>
-                    
-                    <td><b>Acciones</b></td>
-                </tr>
+            <tr id="headerTabla">
+    <td><b>Nombre de la Materia</b></td>
+    <td><b>Horas Totales</b></td>
+    <td><b>Horas Impartidas</b></td>  <!-- Nueva línea -->
+    <td><b>Grupo Pedagógico</b></td>
+    <td><b>Acciones</b></td>
+</tr>
 
-                <tr id="datosTabla">
-                    
-                    <td><input class="input-form" type="text" name="nombreMateria" value="<?php echo $mostrar['Nombre_materia']; ?>" required></td>
-                    <td><input class="input-form" type="text" name="horas_totales" value="<?php echo $mostrar['Horas_totales']; ?>" required></td>
+<tr id="datosTabla">
+    <td><input class="input-form" type="text" name="nombreMateria" value="<?php echo $mostrar['Nombre_materia']; ?>" required></td>
+    <td><input class="input-form" type="text" name="horas_totales" value="<?php echo $mostrar['Horas_totales']; ?>" required></td>
+    <td><input class="input-form" type="text" name="horas_impartidas" value="<?php echo $mostrar['Horas_impartidas']; ?>" required></td>  <!-- Nueva línea -->
                     
                     
 

@@ -34,6 +34,7 @@
         <a href="../materias/materias.php">
             <button class="buttonnav"><b>Agregar</b></button>
         </a>
+        <button class="buttonnav" onclick="confirmarNuevoSemestre()"><b>NuevoSemestre</b></button>
     </div>
 
     <?php
@@ -62,13 +63,13 @@ if (isset($_SESSION['mensajeExito'])) {
             <td><b>ID</b></td>
             <td><b>Nombre de la Materia</b></td>
             <td><b>Horas Totales</b></td>
-            <td><b>Horas Restantes</b></td>
+            <td><b>Horas Impartidas</b></td>
             <td><b>Grupo Pedagógico</b></td>
             <td><b>Acciones</b></td>
         </tr>
 
         <?php
-         $sql = "SELECT m.ID_Materia, m.Nombre_materia, m.Horas_totales, m.Horas_restantes, 
+         $sql = "SELECT m.ID_Materia, m.Nombre_materia, m.Horas_totales, m.Horas_impartidas, 
          gp.Nombre AS NombreGrupoPedagogico, gp.Semestre, c.nombre AS nombre_carrera, gen.Nombre AS nombre_generacion
          FROM materia m
          JOIN grupopedagogico gp ON m.ID_Grupopedagogico = gp.ID_Grupopedagogico
@@ -87,7 +88,7 @@ if (isset($_SESSION['mensajeExito'])) {
                     <td><?php echo $mostrar['ID_Materia']; ?></td>
                     <td><?php echo $mostrar['Nombre_materia']; ?></td>
                     <td><?php echo $mostrar['Horas_totales']; ?></td>
-                    <td><?php echo $mostrar['Horas_restantes']; ?></td>
+                    <td><?php echo $mostrar['Horas_impartidas']; ?></td>
                     <td><?php echo (isset($mostrar['nombre_carrera']) ? $mostrar['nombre_carrera'] : '') . " - Semestre: " . (isset($mostrar['Semestre']) ? $mostrar['Semestre'] : '') . " - Grupo: " . $mostrar['NombreGrupoPedagogico'] . " - Generación: " . (isset($mostrar['nombre_generacion']) ? $mostrar['nombre_generacion'] : ''); ?></td>
 
                     <td id="botonesss">
@@ -104,5 +105,14 @@ if (isset($_SESSION['mensajeExito'])) {
     </table>
 </div>
 <script src="confirmacion.js"></script>
+<script>
+        function confirmarNuevoSemestre() {
+            var confirmar = confirm("¿Estás seguro de que quieres reiniciar las horas para el nuevo semestre?");
+            if (confirmar) {
+                // Llamar al script PHP para reiniciar las horas
+                window.location.href = '../reiniciarSemestre.php';
+            }
+        }
+    </script>
 </body>
 </html>
